@@ -9,20 +9,16 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos.Entity
 {
-    public class Cliente : EntityBase
+    public class Cliente 
     {
   
         [Key]
-        public int idCliente { get; set; }
-        public required string idPaises { get; set; }
-        public Pais? Pais { get; set; }
-        public required string idProvincias { get; set; }
-        public Provincia? Provincia { get; set; }
-        public required string idLocalidad { get; set; }
-        public Localidad? Localidad { get; set; }
-        public required string idDomicilios { get; set; }
-        public Domicilio? Domicilio { get; set; }
-        public required string idPersona { get; set; }
-        public Persona? Persona { get; set; }
+       public int Id { get; set; }
+
+        // fk de persona 
+        public int PersonasID { get; set; }
+        public Persona? Personas { get; set; }
+
+        public List<Plantilla> Plantillas { get; set; } = new List<Plantilla>();
     }
 }

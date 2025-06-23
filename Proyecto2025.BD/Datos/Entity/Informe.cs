@@ -16,10 +16,10 @@ namespace EstudioJuridico.BD.Datos.Entity
         PeritoDeControl = 4,
         Otro = 5
     }
-    public class Informe : EntityBase
+    public class Informe 
     {
         [Key]
-        public int idInformes { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "El tipo de informe es obligatoria")]
         [MaxLength(100, ErrorMessage = "1 caracter mínimo")]
@@ -35,5 +35,8 @@ namespace EstudioJuridico.BD.Datos.Entity
       
         [MaxLength(500)]
         public required string ArchivoUrl { get; set; }
+
+        //navegacion a plantilla penal 
+        public List<PlantillaPenal> plantillaPenals { get; set; } = new List<PlantillaPenal>();
     }
 }

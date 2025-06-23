@@ -8,22 +8,16 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos.Entity
 {
-    public class PersonaDomicilio : EntityBase
-    /*
-Personas_idPersona INT
-Domicilios_idDomicilios INT
+    public class PersonaDomicilio 
 
-     */
+     
     {
-        [Key]
-        public int idPersonasDomicilios { get; set; }
+        // fk de personas 
+       public int PersonaID { get; set; }
+        public Persona? Personas { get; set; } 
 
-        [Required]
-        public int idPersona { get; set; }
-        public Persona? Persona { get; set; }
-
-        [Required]
-        public int idDomicilios { get; set; }
-        public Domicilio? Domicilio { get; set; }
+        //fk de domicilio 
+        public int DomicilioID { get; set; }
+        public Domicilio? Domicilios { get; set; }
     }
 }

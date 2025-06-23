@@ -9,22 +9,14 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos.Entity
 {
-    public class Persona : EntityBase
+    public class Persona 
     {
       
         [Required(ErrorMessage = "El Pais, la Provincia, la Localidad y Domicilio son obligatorios")]
 
         [Key]
-        public int idPersona { get; set; }
-        public required string idPaises { get; set; }
-        public Pais? Pais { get; set; }
-        public required string idProvincias { get; set; }
-        public Provincia? Provincia { get; set; }
-        public required string idLocalidad { get; set; }
-        public Localidad? Localidad { get; set; }
-        public required string idDomicilios { get; set; }
-        public Domicilio? Domicilio { get; set; }
-
+        public int Id { get; set; }
+       
         [Required(ErrorMessage = "Nombre es obligatorio")]
         [MaxLength(100, ErrorMessage = "1 caracter mínimo")]
         public required string Nombre { get; set; }
@@ -48,5 +40,14 @@ namespace EstudioJuridico.BD.Datos.Entity
         [Required(ErrorMessage = "Indicar si pago la Tasa de Justicia o los Aportes")]
         public bool? TasaJusticia_Aportes { get; set; }
 
+        //navegando la id de persona a personal penal con el nombre PersonaId
+        public List<PersonaPenal>? PersonaPenals { get; set; } = new List<PersonaPenal>();
+
+        // navegacion de persona a personasdomicilio 
+
+        public List<PersonaDomicilio>? PersonaDomicilios { get; set; } = new List<PersonaDomicilio>();
+
+        //navegacion del id a tabla cliente 
+        public List<Cliente>? Clientes { get; set; } = new List<Cliente>(); 
     }
 }

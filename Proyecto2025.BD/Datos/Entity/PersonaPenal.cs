@@ -9,17 +9,16 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos.Entity
 {
-    public class PersonaPenal : EntityBase
+    public class PersonaPenal
     {
         [Key]
-        public int idPersonaPenal { get; set; }
-        public required string idPaises { get; set; }
-        public Pais? Pais { get; set; }
-        public required string idProvincias { get; set; }
-        public Provincia? Provincia { get; set; }
-        public required string idLocalidad { get; set; }
-        public Localidad? Localidad { get; set; }
-        public required string idDomicilios { get; set; }
-        public Domicilio? Domicilio { get; set; }
+        public int Id { get; set; }
+
+        public int PlantillaPenals { get; set; }
+
+        //recibo de la navegacion de persona que vendria a ser el id de persona para poder relacionarse 1 a muchos 
+        public int PersonaId { get; set; }
+        public required Persona? Personas { get; set; }
+
     }
 }

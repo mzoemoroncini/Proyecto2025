@@ -10,26 +10,10 @@ using System.Threading.Tasks;
 namespace EstudioJuridico.BD.Datos.Entity
 {
   
-    public class PlantillaPenal : EntityBase
+    public class PlantillaPenal 
     {
         [Key]
-        public int idPlantillaPenal { get; set; }
-        public required string idPaises { get; set; }
-        public Pais? Pais { get; set; }
-        public required string idProvincias { get; set; }
-        public Provincia? Provincia { get; set; }
-        public required string idLocalidad { get; set; }
-        public Localidad? Localidad { get; set; }
-        public required string idDomicilios { get; set; }
-        public Domicilio? Domicilio { get; set; }
-        public required string idPersona { get; set; }
-        public Persona? Persona { get; set; }
-        public required string idClientes { get; set; }
-        public Cliente? Cliente { get; set; }
-        public required string idPlantilla { get; set; }
-        public Plantilla? Plantilla { get; set; }
-        public required string idInformes { get; set; }
-        public Informe? Informe { get; set; }
+        public int Id { get; set; }
 
 
         [Required(ErrorMessage = "El Nombre del imputado es obligatorio")]
@@ -62,5 +46,10 @@ namespace EstudioJuridico.BD.Datos.Entity
 
         [DataType(DataType.Date)]
         public required DateTime FechaDetencion { get; set; }
+
+        public int InformeId { get; set; }
+        public Informe? Informes { get; set; }
+
+        public List<PlantillaPenalTieneTestigo> PlantillaPenalTieneTestigos { get; set; } = new List<PlantillaPenalTieneTestigo>();    
     }
 }

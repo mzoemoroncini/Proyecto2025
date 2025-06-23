@@ -14,22 +14,10 @@ namespace EstudioJuridico.BD.Datos.Entity
         Cliente = 1,
         Penal = 2
     }
-    public class Plantilla : EntityBase
+    public class Plantilla 
     {
         [Key]
-        public int idPlantilla { get; set; }
-        public required string idPaises { get; set; }
-        public Pais? Pais { get; set; }
-        public required string idProvincias { get; set; }
-        public Provincia? Provincia { get; set; }
-        public required string idLocalidad { get; set; }
-        public Localidad? Localidad { get; set; }
-        public required string idDomicilios { get; set; }
-        public Domicilio? Domicilio { get; set; }
-        public required string idPersona { get; set; }
-        public Persona? Persona { get; set; }
-        public required string idClientes { get; set; }
-        public Cliente? Cliente { get; set; }
+        public int Id { get; set; } 
 
         [Required(ErrorMessage = "Nombre es obligatorio")]
         [MaxLength(100, ErrorMessage = "1 caracter mínimo")]
@@ -45,6 +33,16 @@ namespace EstudioJuridico.BD.Datos.Entity
         [Required(ErrorMessage = "Tipo de plantilla es obligatoria")]
         [MaxLength(2, ErrorMessage = "1 caracter mínimo")]
         public required Tipo Tipo{ get; set; }
+
+        //fk de cliente 
+        public int ClienteId { get; set; }
+        public Cliente? Cliente { get; set; }  
+        
+        //navegacion hacia la tabla plantilla penal 
+        public List<PlantillaPenal> plantillaPenals { get; set; } = new List<PlantillaPenal>();
+
+        
+        
 
     }
 }

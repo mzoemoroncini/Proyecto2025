@@ -8,29 +8,17 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos.Entity
 {
-    public class PlantillaPenalTieneTestigo : EntityBase
+    public class PlantillaPenalTieneTestigo
     {
-        public required string idTestigo { get; set; }
-        public Testigo? Testigo { get; set; }
+        
+        public int PlantillaPenalId { get; set; }
+        public PlantillaPenal? PlantillaPenals { get; set; }
 
-        public required string idPaises { get; set; }
-        public Pais? Pais { get; set; }
-        public required string idProvincias { get; set; }
-        public Provincia? Provincia { get; set; }
-        public required string idLocalidad { get; set; }
-        public Localidad? Localidad { get; set; }
-        public required string idDomicilios { get; set; }
-        public Domicilio? Domicilio { get; set; }
-        public required string idPersona { get; set; }
-        public Persona? Persona { get; set; }
-        public required string idClientes { get; set; }
-        public Cliente? Cliente { get; set; }
-        public required string idPlantilla { get; set; }
-        public Plantilla? Plantilla { get; set; }
-        public required string idInformes { get; set; }
-        public Informe? Informe { get; set; }
-        public required string idPlantillaPenal { get; set; }
-        public PlantillaPenal? PlantillaPenal { get; set; }
+        public int TestigoId { get; set; }
+        public Testigo? Testigos { get; set; }
+
+
+
 
     }
 }

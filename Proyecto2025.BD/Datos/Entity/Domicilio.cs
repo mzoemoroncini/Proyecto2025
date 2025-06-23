@@ -12,18 +12,13 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EstudioJuridico.BD.Datos.Entity
 {
-    public class Domicilio : EntityBase
+    public class Domicilio
     {
         [Required(ErrorMessage = "El Pais, la Provincia y Localidad son obligatorios")]
 
         [Key]
-        public int idDomicilios { get; set; }
-        public required string idPaises { get; set; }
-        public Pais? Pais { get; set; }
-        public required string idProvincias { get; set; }
-        public Provincia? Provincia { get; set; }
-        public required string idLocalidad { get; set; }
-        public Localidad? Localidad { get; set; }
+        public int Id{ get; set; }
+        
 
         [Required(ErrorMessage = "La Calle es obligatoria")]
         [MaxLength(100, ErrorMessage = "1 caracter mínimo")]
@@ -44,6 +39,13 @@ namespace EstudioJuridico.BD.Datos.Entity
         [Required(ErrorMessage = "El Departamento es obligatorio")]
         [MaxLength(45, ErrorMessage = "1 caracter mínimo")]
         public required string Departamento { get; set; }
+
+        public List<PersonaDomicilio>? PersonaDomicilios { get; set; } = new List<PersonaDomicilio>();
+
+
+        // clave foranea de localidad en esta tabla domicilio
+        public int LocalidadID { get; set; }
+        public Localidad? Localidades { get; set; }   
 
     }
 }
