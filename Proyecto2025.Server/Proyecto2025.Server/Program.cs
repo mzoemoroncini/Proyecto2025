@@ -31,12 +31,14 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "API Proyecto2025", Version = "v1" });
 });
+builder.Services.AddControllers();
 
 
 #endregion
 
 //CONSTRUCCION DE LA APLICACION
 var app = builder.Build();
+app.MapControllers();
 
 #region Construcción de la aplicacion y el área de middlewears
 
