@@ -1,4 +1,4 @@
-﻿using Proyecto2025.BD.Datos;
+﻿using EstudioJuridico.BD.Datos.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EstudioJuridico.BD.Datos.Entity
+namespace EstudioJuridico.BD.Datos
 {
-    public class PersonaDomicilio 
+    public class PersonaDomicilio : DBContext
 
      
     {

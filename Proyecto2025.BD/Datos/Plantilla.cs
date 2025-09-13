@@ -1,5 +1,4 @@
-﻿using Proyecto2025.BD.Datos;
-using Proyecto2025.BD.Datos.Entity;
+﻿using EstudioJuridico.BD.Datos.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,17 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EstudioJuridico.BD.Datos.Entity
+namespace EstudioJuridico.BD.Datos
 {
-    public enum Tipo
+    
+    public class Plantilla : DBContext
     {
-        Cliente = 1,
-        Penal = 2
-    }
-    public class Plantilla 
-    {
-        [Key]
-        public int Id { get; set; } 
 
         [Required(ErrorMessage = "Nombre es obligatorio")]
         [MaxLength(100, ErrorMessage = "1 caracter mínimo")]
@@ -30,19 +23,19 @@ namespace EstudioJuridico.BD.Datos.Entity
         [DataType(DataType.Date)]
         public required DateTime FechaCreacion { get; set; }
 
-        [Required(ErrorMessage = "Tipo de plantilla es obligatoria")]
-        [MaxLength(2, ErrorMessage = "1 caracter mínimo")]
-        public required Tipo Tipo{ get; set; }
+        public enum Tipo
+        {
+            Cliente,
+            Penal
+        }
+        //fk
 
-        //fk de cliente 
-        public int ClienteId { get; set; }
-        public Cliente? Cliente { get; set; }  
-        
         //navegacion hacia la tabla plantilla penal 
-        public List<PlantillaPenal> plantillaPenals { get; set; } = new List<PlantillaPenal>();
+        public List<PersonaPlantilla>? PersonaPlantillas { get; set; }
+        public List<PlantillaCaso>? PlantillaCasos { get; set; }
 
-        
-        
+
+
 
     }
 }

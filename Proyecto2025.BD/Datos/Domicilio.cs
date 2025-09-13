@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Proyecto2025.BD.Datos;
-using Proyecto2025.BD.Datos.Entity;
+using EstudioJuridico.BD.Datos.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,15 +9,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace EstudioJuridico.BD.Datos.Entity
+namespace EstudioJuridico.BD.Datos
 {
     public class Domicilio
     {
-        [Required(ErrorMessage = "El Pais, la Provincia y Localidad son obligatorios")]
-
-        [Key]
-        public int Id{ get; set; }
-        
+       // [Required(ErrorMessage = "El Pais, la Provincia y Localidad son obligatorios")]
 
         [Required(ErrorMessage = "La Calle es obligatoria")]
         [MaxLength(100, ErrorMessage = "1 caracter mínimo")]
@@ -33,19 +28,21 @@ namespace EstudioJuridico.BD.Datos.Entity
         public required string Barrio { get; set; }
 
         [Required(ErrorMessage = "El Piso es obligatorio")]
-        [MaxLength(45, ErrorMessage = "1 caracter mínimo")]
+        [MaxLength(200, ErrorMessage = "1 caracter mínimo")]
         public required string Piso { get; set; }
 
         [Required(ErrorMessage = "El Departamento es obligatorio")]
         [MaxLength(45, ErrorMessage = "1 caracter mínimo")]
         public required string Departamento { get; set; }
 
-        public List<PersonaDomicilio>? PersonaDomicilios { get; set; } = new List<PersonaDomicilio>();
 
-
-        // clave foranea de localidad en esta tabla domicilio
+        // claves foraneas
         public int LocalidadID { get; set; }
-        public Localidad? Localidades { get; set; }   
+        public Localidad? Localidades { get; set; }
+
+
+        // navegacion
+        public List<PersonaDomicilio>? PersonaDomicilios { get; set; } = new List<PersonaDomicilio>();
 
     }
 }

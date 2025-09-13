@@ -1,8 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
-using Proyecto2025.BD.Datos;
 using Proyecto2025.Server.Client.Pages;
 using Proyecto2025.Server.Components;
 using Microsoft.EntityFrameworkCore;
+using EstudioJuridico.BD.Datos.Entity;
 
 
 
@@ -17,6 +17,16 @@ var conectionString = builder.Configuration.GetConnectionString("ConnSqlServer")
                     "El string de conexion no existe");
 builder.Services.AddDbContext<AppDBContext>(Options => 
                                             Options.UseSqlServer(conectionString));
+
+
+//builder.Services.AddDbContext<DBContext>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("DBContextConnection")));
+
+//builder.Services.AddDbContext<AppDBContext>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("AppDBContextConnection")));
+
+
+
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
