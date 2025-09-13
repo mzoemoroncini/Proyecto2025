@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using EstudioJuridico.BD.Datos.Entity;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace EstudioJuridico.BD.Datos
     [Index(nameof(Codigo), Name = "Pais_Codigo_UQ", IsUnique = true)]
     // [Index(nameof(idPaises), Name = "Pais_idPaises_UQ", IsUnique = true)]
 
-    public class Pais : DbContext
+    public class Pais : BaseEntity
     {
         
 

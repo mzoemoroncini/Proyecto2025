@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos
 {
-    public class TipoDocumentacion : DBContext
+    public class TipoDocumentacion : BaseEntity
     {
         [Required(ErrorMessage = "El Nombre es obligatorio")]
         [MaxLength(100, ErrorMessage = "1 caracter mínimo")]

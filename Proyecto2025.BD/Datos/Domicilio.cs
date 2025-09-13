@@ -11,7 +11,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EstudioJuridico.BD.Datos
 {
-    public class Domicilio
+    public class Domicilio : BaseEntity
     {
        // [Required(ErrorMessage = "El Pais, la Provincia y Localidad son obligatorios")]
 

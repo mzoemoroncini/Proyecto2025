@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos
 {
-    public class Usuario : DBContext
+    public class Usuario : BaseEntity
     {
         [Required(ErrorMessage = "El Nombre es obligatorio")]
         [MaxLength(100, ErrorMessage = "1 caracter mínimo")]
@@ -17,12 +17,9 @@ namespace EstudioJuridico.BD.Datos
         [MaxLength(100, ErrorMessage = "1 caracter mínimo")]
         public string Mail { get; set; }
 
-        public enum Rol
-        {
-            Administrador,
-            Abogado,
-            Secretaria
-        }
+     
+        public RolUsuario Rol { get; set; }
+
         [Required(ErrorMessage = "La contraseña es obligatoria")]
         [MaxLength(100, ErrorMessage = "1 caracter mínimo")]
         public string Password { get; set; }
@@ -34,5 +31,11 @@ namespace EstudioJuridico.BD.Datos
 
         //navegacion
         public List<EventoParticipante>? EventoParticipantes { get; set; }
+    }
+    public enum RolUsuario
+    {
+        Administrador,
+        Abogado,
+        Secretaria
     }
 }

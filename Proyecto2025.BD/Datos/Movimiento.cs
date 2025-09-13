@@ -8,13 +8,11 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos
 {
-    public class Movimiento : DBContext
+    public class Movimiento : BaseEntity
     {
-        public enum Tipo
-        {
-            Honorario,
-            Gasto
-        }
+       
+        public TipoMovimiento Tipo { get; set; }
+
         [Required(ErrorMessage = "Concepto es obligatorio")]
         [MaxLength(100, ErrorMessage = "1 caracter mínimo")]
         public string Concepto { get; set; }
@@ -36,5 +34,10 @@ namespace EstudioJuridico.BD.Datos
 
         public int PersonaID { get; set; }
         public Persona? Personas { get; set; }
+    }
+    public enum TipoMovimiento
+    {
+        Honorario,
+        Gasto
     }
 }

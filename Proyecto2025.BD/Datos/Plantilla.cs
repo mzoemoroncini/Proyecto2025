@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace EstudioJuridico.BD.Datos
 {
     
-    public class Plantilla : DBContext
+    public class Plantilla : BaseEntity
     {
 
         [Required(ErrorMessage = "Nombre es obligatorio")]
@@ -23,11 +23,9 @@ namespace EstudioJuridico.BD.Datos
         [DataType(DataType.Date)]
         public required DateTime FechaCreacion { get; set; }
 
-        public enum Tipo
-        {
-            Cliente,
-            Penal
-        }
+        
+        public TipoPlantilla Tipo { get; set; }
+
         //fk
 
         //navegacion hacia la tabla plantilla penal 
@@ -37,5 +35,10 @@ namespace EstudioJuridico.BD.Datos
 
 
 
+    }
+    public enum TipoPlantilla
+    {
+        Cliente,
+        Penal
     }
 }

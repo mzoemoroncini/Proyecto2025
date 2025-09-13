@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos
 {
-    public class Testigo : DBContext
+    public class Testigo : BaseEntity
     {
        
         [Required(ErrorMessage = "Nombre del testigo es obligatorio")]

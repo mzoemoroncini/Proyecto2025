@@ -1,19 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos.Entity
 {
-    public class DBContext : DbContext
+    public class BaseEntity
     {
-        public int Id { get; set; }
+            public int Id { get; set; }
 
-
-        
-    
-}
-    
+    }
 }

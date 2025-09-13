@@ -11,7 +11,7 @@ namespace EstudioJuridico.BD.Datos
 {
     [Index(nameof(Codigo), Name = "Provincia_Codigo_UQ", IsUnique = true)]
 
-    public class Provincia : DbContext
+    public class Provincia : BaseEntity
     {
         
        

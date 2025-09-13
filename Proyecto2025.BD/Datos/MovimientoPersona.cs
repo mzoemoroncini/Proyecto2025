@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos
 {
-    public class MovimientoPersona : DBContext
+    public class MovimientoPersona : BaseEntity
     {
     }
 }

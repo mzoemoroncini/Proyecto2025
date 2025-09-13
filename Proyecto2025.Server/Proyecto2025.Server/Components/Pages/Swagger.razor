@@ -1,0 +1,12 @@
+﻿<button @onclick="AbrirSwagger">Ir a Swagger</button>
+
+@code {
+    private void AbrirSwagger()
+    {
+        var swaggerUrl = "/swagger/index.html";
+        var js = $"window.open('{swaggerUrl}', '_blank');";
+        _ = JS.InvokeVoidAsync("eval", js);
+    }
+
+    [Inject] IJSRuntime JS { get; set; } = default!;
+}

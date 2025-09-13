@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos
 {
-    public class Documentacion : DBContext
+    public class Documentacion : BaseEntity
     {
 
         [Required(ErrorMessage = "La descripcion es obligatoria")]

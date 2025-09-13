@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos
 {
-    public class PersonaDomicilio : DBContext
+    public class PersonaDomicilio : BaseEntity
 
-     
+
     {
         // fk de personas 
        public int PersonaID { get; set; }

@@ -1,8 +1,9 @@
+using EstudioJuridico.BD.Datos.Entity;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Proyecto2025.Server.Client.Pages;
 using Proyecto2025.Server.Components;
-using Microsoft.EntityFrameworkCore;
-using EstudioJuridico.BD.Datos.Entity;
 
 
 
@@ -19,19 +20,18 @@ builder.Services.AddDbContext<AppDBContext>(Options =>
                                             Options.UseSqlServer(conectionString));
 
 
-//builder.Services.AddDbContext<DBContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("DBContextConnection")));
-
-//builder.Services.AddDbContext<AppDBContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("AppDBContextConnection")));
-
-
-
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddEndpointsApiExplorer(); // necesario para Swagger
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new() { Title = "API Proyecto2025", Version = "v1" });
+});
+
 
 #endregion
 
@@ -63,6 +63,17 @@ app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(Proyecto2025.Server.Client._Imports).Assembly);
 app.MapControllers();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Proyecto2025 v1");
+        // Si querés que Swagger esté en la raíz:
+        // c.RoutePrefix = string.Empty;
+    });
+}
 
 #endregion
 app.Run();

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos
 {
-    public class PlantillaCaso : DBContext
+    public class PlantillaCaso : BaseEntity
     {
 
         //fk

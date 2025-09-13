@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos
 {
-    public class Caso : DBContext
-    {
+    public class Caso : BaseEntity
+        {
         
 
         [Required(ErrorMessage = "El numero de expediente es obligatorio")]
@@ -18,28 +18,32 @@ namespace EstudioJuridico.BD.Datos
 
         [DataType(DataType.Date)]
         public DateOnly FechaInicio { get; set; }
-        public enum EstadoCaso
-                                {
-                                 Abierto,
-                                 Cerrado,
-                                 EnProgreso,
-                                 EnEspera
-                                 }
+       
+        public EstadoCaso Estado { get; set; }
         public string? Descripcion { get; set; }
-        public enum TipoCaso
-                                {
-                                 Civil,
-                                 Penal,
-                                 Laboral,
-                                 Familiar,
-                                 Comercial
-                                }
-
+        
+        public TipoCaso Tipo { get; set; }
         // navegacion 
         public List<CasoPersona>? CasoPersonas { get; set; }
         public List<Documentacion>? Documentacions { get; set; }
         public List<Evento>? Eventos { get; set; }
         public List<Movimiento>? Movimientos { get; set; }
         public List<PlantillaCaso>? PlantillaCasos { get; set; }
+        public List<Testigo>? Testigos { get; set; }
+    }
+    public enum EstadoCaso
+    {
+        Abierto,
+        Cerrado,
+        EnProgreso,
+        EnEspera
+    }
+    public enum TipoCaso
+    {
+        Civil,
+        Penal,
+        Laboral,
+        Familiar,
+        Comercial
     }
 }

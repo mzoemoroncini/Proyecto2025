@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos
 {
-    public class Persona : DBContext
+    public class Persona : BaseEntity
     {
      
        

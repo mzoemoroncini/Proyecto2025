@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos
 {
-    public class EventoParticipante : DBContext
+    public class EventoParticipante : BaseEntity
     {
         [Required(ErrorMessage = "El Rol es obligatorio")]
         [MaxLength(100, ErrorMessage = "1 caracter mínimo")]
@@ -24,5 +24,6 @@ namespace EstudioJuridico.BD.Datos
 
         public int UsuarioId { get; set; }
         public Usuario? Usuarios { get; set; }
+        
     }
 }

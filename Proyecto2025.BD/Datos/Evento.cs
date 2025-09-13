@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos
 {
-    public class Evento : DBContext
+    public class Evento : BaseEntity
     {
         [Required(ErrorMessage = "El titulo es obligatorio")]
         [MaxLength(100, ErrorMessage = "1 caracter mínimo")]
@@ -22,12 +22,9 @@ namespace EstudioJuridico.BD.Datos
         public DateOnly Inicio { get; set; }
         public DateOnly Fin { get; set; }
 
-        public enum EstadoEvento
-        {
-            Pendiente,
-            Completado,
-            Cancelado
-        }
+      
+        public EstadoEvento Estado { get; set; }
+
         [Required(ErrorMessage = "La ubicacion es obligatoria")]
         [MaxLength(100, ErrorMessage = "1 caracter mínimo")]
 
@@ -39,5 +36,11 @@ namespace EstudioJuridico.BD.Datos
 
         // navegacion
         public List<EventoParticipante>? EventoParticipantes { get; set; } 
+    }
+    public enum EstadoEvento
+    {
+        Pendiente,
+        Completado,
+        Cancelado
     }
 }

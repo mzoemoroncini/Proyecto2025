@@ -12,7 +12,7 @@ namespace EstudioJuridico.BD.Datos
 
         //fk
         public int PersonaID { get; set; }
-        public PersonaPlantilla? PersonaPlantillas { get; set; }
+        public Persona? Personas { get; set; }
 
         public int PlantillaID { get; set; }
         public Plantilla? Plantillas { get; set; }
