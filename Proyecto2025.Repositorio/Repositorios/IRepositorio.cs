@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EstudioJuridico.Repositorio.Repositorios
+{
+    public interface IRepositorio<E> where E : class
+    {
+        Task<bool> Existe(int id);
+        Task<int> Insert(E entidad);
+        Task<List<E>> Select();
+        Task<E?> SelectById(int id);
+        Task<bool> Update(int id, E entidad);
+        Task<bool> Delete(int id, E entidad);
+    }
+}

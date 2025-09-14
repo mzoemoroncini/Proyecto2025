@@ -1,4 +1,5 @@
 using EstudioJuridico.BD.Datos.Entity;
+using EstudioJuridico.Repositorio.Repositorios;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -79,3 +80,18 @@ if (app.Environment.IsDevelopment())
 
 #endregion
 app.Run();
+
+
+
+builder.Services.AddScoped<ICasoRepositorio, CasoRepositorio>();
+//builder.Services.AddScoped<IPersonaRepositorio, PersonaRepositorio>();
+//builder.Services.AddScoped<ICasoPersonaRepositorio, CasoPersonaRepositorio>();
+//builder.Services.AddScoped<IDocumentacionRepositorio, DocumentacionRepositorio>();
+//builder.Services.AddScoped<IEventoRepositorio, EventoRepositorio>();
+
+//builder.Services.AddScoped<IMovimientoRepositorio, MovimientoRepositorio>();
+//builder.Services.AddScoped<IPlantillaCasoRepositorio, PlantillaCasoRepositorio>();
+//builder.Services.AddScoped<ITestigoRepositorio, TestigoRepositorio>();
+//builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();  
+//builder.Services.AddScoped<IRolRepositorio, RolRepositorio>();
+

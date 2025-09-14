@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Proyecto2025.BD\EstudioJuridico.BD.csproj" />
+  </ItemGroup>
+
 </Project>
