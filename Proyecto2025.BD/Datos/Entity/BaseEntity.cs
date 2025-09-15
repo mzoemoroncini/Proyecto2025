@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos.Entity
 {
-    public class BaseEntity
+    public class BaseEntity : IBaseEntity
     {
             public int Id { get; set; }
             ENUMEstadoRegistro EstadoRegistro { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos.Entity
 {
-    internal interface IBaseEntity
+    public interface IBaseEntity
     {
             int Id { get; set; }
             ENUMEstadoRegistro EstadoRegistro { get; set; }

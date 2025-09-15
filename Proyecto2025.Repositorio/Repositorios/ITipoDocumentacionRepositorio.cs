@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.Repositorio.Repositorios
 {
-    public interface ICasoRepositorio : IRepositorio<Caso>
+    public interface ITipoDocumentacionRepositorio : IRepositorio<TipoDocumentacion>
     {
       
-        
-        //Task<Caso?> GetByNumeroExpediente(int NumeroExpediente);
-        //Task<List<Caso?>> GetByTipo(string tipo);
     }
 }

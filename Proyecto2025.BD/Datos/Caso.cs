@@ -31,10 +31,7 @@ namespace EstudioJuridico.BD.Datos
         public List<PlantillaCaso>? PlantillaCasos { get; set; }
         public List<Testigo>? Testigos { get; set; }
 
-        //public object? GetList(Func<object, object> value)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        
     }
     public enum EstadoCaso
     {

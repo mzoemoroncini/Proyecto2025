@@ -49,35 +49,35 @@ namespace Proyecto2025.Server.Controllers
             return Ok(entidad);
         }
 
-        [HttpGet("SelectByNumeroExpediente/{NumeroExpediente}")]  
-        public async Task<ActionResult<Caso>> SelectByNumeroExpediente(int NumeroExpediente)
-        {
-            var entidad = await repositorio.SelectByNumeroExpediente(NumeroExpediente);
-            if (entidad is null)
-            {
-                return NotFound($"No existe registro con el Numero Expediente: {NumeroExpediente}.");
-            }
+        //[HttpGet("GetByNumeroExpediente/{NumeroExpediente}")]  
+        //public async Task<ActionResult<Caso>> GetByNumeroExpediente(int NumeroExpediente)
+        //{
+        //    var entidad = await repositorio.SelectByNumeroExpediente(NumeroExpediente);
+        //    if (entidad is null)
+        //    {
+        //        return NotFound($"No existe registro con el Numero Expediente: {NumeroExpediente}.");
+        //    }
 
-            return Ok(entidad);
-        }
+        //    return Ok(entidad);
+        //}
          
         
 
-        [HttpGet("SelectByTipo/{Tipo}")]
-        public async Task<ActionResult<CasoResumenDTO>> SelectByTipo(string tipo)
-        {
-            await repositorio.CasoResumen(tipo);
-            return Ok(); 
-        }
+        //[HttpGet("GetByTipo/{Tipo}")]
+        //public async Task<ActionResult<Caso>> GetByTipo(string tipo)
+        //{
+        //    await repositorio.SelectByTipo(tipo);
+        //    return Ok(); 
+        //}
 
         [HttpPost]
-        public async Task<ActionResult<int>> Post(CasoCrearDTO DTO)
+        public async Task<ActionResult<int>> Post(Caso DTO)
         {
             try
             {
                 Caso entidad = new Caso
                 {
-                   //Id = DTO.Id,                   
+                   Id = DTO.Id,                   
                     NumeroExpediente = DTO.NumeroExpediente,
                     FechaInicio = DTO.FechaInicio,
                     Estado = DTO.Estado,
