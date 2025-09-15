@@ -11,7 +11,6 @@ namespace EstudioJuridico.BD.Datos.Entity
     public class BaseEntity : IBaseEntity
     {
             public int Id { get; set; }
-            ENUMEstadoRegistro EstadoRegistro { get; set; }
-
+            public ENUMEstadoRegistro EstadoRegistro { get; set; }
     }
 }

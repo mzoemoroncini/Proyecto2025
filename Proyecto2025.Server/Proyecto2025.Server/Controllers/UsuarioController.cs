@@ -4,11 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Proyecto2025.Server.Controllers
 {
-    public class UsuarioController
-    {
+
         [ApiController]
         [Route("api/Usuario")]
-        public class UsuarioController : ControllerBase
+        public class UsuarioController : ControllerBase, IUsuarioController
         {
             private readonly IUsuarioRepositorio repositorio;
 
@@ -94,5 +93,5 @@ namespace Proyecto2025.Server.Controllers
             }
         }
     }
-}
-}
+
+

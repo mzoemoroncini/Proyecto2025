@@ -48,5 +48,5 @@ namespace EstudioJuridico.Repositorio.Repositorios
         //    }
         }
     }
-}
+
 

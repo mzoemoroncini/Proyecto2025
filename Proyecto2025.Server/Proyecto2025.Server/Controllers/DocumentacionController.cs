@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Proyecto2025.Server.Controllers
 {
-    public class DocumentacionController
-    {
+ 
         [ApiController]
         [Route("api/Documentacion")]
         public class DocumentacionController : ControllerBase
@@ -94,4 +93,4 @@ namespace Proyecto2025.Server.Controllers
             }
         }
     }
-}
+

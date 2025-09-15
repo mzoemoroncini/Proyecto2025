@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Proyecto2025.Server.Controllers
 {
-    public class CasoPersonaController
-    {
+ 
         [ApiController]
         [Route("api/CasoPersona")]
         public class CasoPersonaController : ControllerBase
@@ -91,5 +90,5 @@ namespace Proyecto2025.Server.Controllers
             }
         }
     }
-}
-}
+
+
