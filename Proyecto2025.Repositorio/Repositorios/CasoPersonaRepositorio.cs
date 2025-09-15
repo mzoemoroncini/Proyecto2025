@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EstudioJuridico.BD.Datos;
+using EstudioJuridico.BD.Datos.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,14 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.Repositorio.Repositorios
 {
-    public class CasoPersonaRepositorio
-    {
+    public class CasoPersonaRepositorio : Repositorio<CasoPersona>, ICasoPersonaRepositorio
+        {
+            private readonly AppDBContext context;
+
+        public CasoPersonaRepositorio(AppDBContext context) : base(context)
+        {
+            this.context = context;
+        }
     }
+}
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.BD.Datos
 {
-    public class CasoPersona
+    public class CasoPersona : BaseEntity
     {
         //fk
         public int PersonaId { get; set; }
