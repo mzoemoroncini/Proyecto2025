@@ -15,7 +15,7 @@ namespace Proyecto2025.Server.Controllers
             {
                 this.repositorio = repositorio;
             }
-
+        //uuuyu
             [HttpGet]
             public async Task<ActionResult<List<CasoPersona>>> GetFull()
             {
