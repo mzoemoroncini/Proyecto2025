@@ -12,7 +12,6 @@ using Proyecto2025.Server.Components;
 #region configura el constructor de la aplicacion y sus servicios
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
 
 var conectionString = builder.Configuration.GetConnectionString("ConnSqlServer")
 ?? throw new InvalidOperationException(
