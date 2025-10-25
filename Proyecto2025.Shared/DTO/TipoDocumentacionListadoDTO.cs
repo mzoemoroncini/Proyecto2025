@@ -8,13 +8,10 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.Shared.DTO
 {
-    public class CasoCrearDTO
+    public class TipoDocumentacionListadoDTO
     {
         public int Id { get; set; }
-        public int NumeroExpediente { get; set; }
-        public DateOnly FechaInicio { get; set; }
-        public string Estado { get; set; } =  "";
-         public string Tipo { get; set; } = "";
+        public string Nombre { get; set; }
 
     }
 }

@@ -1,6 +1,8 @@
 ﻿using EstudioJuridico.BD.Datos;
 using EstudioJuridico.Repositorio.Repositorios;
+using EstudioJuridico.Shared.DTO;
 using Microsoft.AspNetCore.Mvc;
+using Proyecto2025.Shared.ENUM;
 
 namespace Proyecto2025.Server.Controllers
 {
@@ -31,6 +33,21 @@ namespace Proyecto2025.Server.Controllers
             return Ok(lista);
         }
 
+        [HttpGet("listatipodocumento")] 
+        public async Task<ActionResult<List<TipoDocumentacionListadoDTO>>> ListaTipoDocumentacion()
+        {
+            var lista = await repositorio.SelectListaTipoDocumentacion();
+            if (lista == null)
+            {
+                return NotFound("No se encontro elementos de la lista, VERIFICAR.");
+            }
+            if (lista.Count == 0)
+            {
+                return Ok("Lista sin registros.");
+            }
+
+            return Ok(lista);
+        }
 
 
         [HttpGet("{id:int}")]
@@ -65,6 +82,8 @@ namespace Proyecto2025.Server.Controllers
                 return BadRequest($"Error al crear el registro: {e.Message}");
             }
         }
+
+        
 
         [HttpPut("{id:int}")]
         public async Task<ActionResult> Put(int id, TipoDocumentacion DTO)

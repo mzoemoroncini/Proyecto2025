@@ -1,5 +1,6 @@
 ﻿using EstudioJuridico.BD.Datos;
 using EstudioJuridico.Repositorio.Repositorios;
+using EstudioJuridico.Shared.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Proyecto2025.Server.Controllers
@@ -32,9 +33,23 @@ namespace Proyecto2025.Server.Controllers
                 return Ok(lista);
             }
 
+        //[HttpGet("listacaso")] //api/Caso/listacaso
+        //public async Task<ActionResult<List<CasoListadoDTO>>> ListaPais()
+        //{
+        //    var lista = await repositorio.GetCasoListado();
+        //    if (lista == null)
+        //    {
+        //        return NotFound("No se encontro elementos de la lista, VERIFICAR.");
+        //    }
+        //    if (lista.Count == 0)
+        //    {
+        //        return Ok("Lista sin registros.");
+        //    }
 
+        //    return Ok(lista);
+        //}
 
-            [HttpGet("{id:int}")]
+        [HttpGet("{id:int}")]
             public async Task<ActionResult<CasoPersona>> GetById(int id)
             {
                 var entidad = await repositorio.SelectById(id);

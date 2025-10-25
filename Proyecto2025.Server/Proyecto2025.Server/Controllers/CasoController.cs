@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace Proyecto2025.Server.Controllers
 {
     [ApiController]
-    [Route("api/Caso")]
+    [Route("api/caso")]
     public class CasoController : ControllerBase
     {
         private readonly ICasoRepositorio repositorio;
@@ -49,26 +49,35 @@ namespace Proyecto2025.Server.Controllers
             return Ok(entidad);
         }
 
-        //[HttpGet("GetByNumeroExpediente/{NumeroExpediente}")]  
-        //public async Task<ActionResult<Caso>> GetByNumeroExpediente(int NumeroExpediente)
-        //{
-        //    var entidad = await repositorio.SelectByNumeroExpediente(NumeroExpediente);
-        //    if (entidad is null)
-        //    {
-        //        return NotFound($"No existe registro con el Numero Expediente: {NumeroExpediente}.");
-        //    }
+        [HttpGet("GetByNumeroExpediente/{NumeroExpediente}")]
+        public async Task<ActionResult<Caso>> GetByNumeroExpediente(int NumeroExpediente)
+        {
+            var entidad = await repositorio.GetByNumeroExpediente(NumeroExpediente);
+            if (entidad is null)
+            {
+                return NotFound($"No existe registro con el Numero Expediente: {NumeroExpediente}.");
+            }
 
-        //    return Ok(entidad);
-        //}
-         
-        
+            return Ok(entidad);
+        }
 
-        //[HttpGet("GetByTipo/{Tipo}")]
-        //public async Task<ActionResult<Caso>> GetByTipo(string tipo)
-        //{
-        //    await repositorio.SelectByTipo(tipo);
-        //    return Ok(); 
-        //}
+
+        [HttpGet("listacaso")] //api/Caso/listacaso
+        public async Task<ActionResult<List<CasoListadoDTO>>> ListaCaso()
+        {
+            var lista = await repositorio.SelectListaCaso();
+            if (lista == null)
+            {
+                return NotFound("No se encontro elementos de la lista, VERIFICAR.");
+            }
+            if (lista.Count == 0)
+            {
+                return Ok("Lista sin registros.");
+            }
+
+            return Ok(lista);
+        }
+
 
         [HttpPost]
         public async Task<ActionResult<int>> Post(Caso DTO)

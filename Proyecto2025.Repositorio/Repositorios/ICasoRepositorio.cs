@@ -1,5 +1,6 @@
 ﻿using EstudioJuridico.BD.Datos;
 using EstudioJuridico.BD.Datos.Entity;
+using EstudioJuridico.Shared.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,7 @@ namespace EstudioJuridico.Repositorio.Repositorios
 {
     public interface ICasoRepositorio : IRepositorio<Caso>
     {
-      
-        
-        //Task<Caso?> GetByNumeroExpediente(int NumeroExpediente);
-        //Task<List<Caso?>> GetByTipo(string tipo);
+        Task<List<CasoListadoDTO>> SelectListaCaso();
+        Task<Caso?> GetByNumeroExpediente(int NumeroExpediente);       
     }
 }

@@ -1,4 +1,4 @@
-﻿using EstudioJuridico.BD.Datos.Entity;
+﻿using Proyecto2025.Shared.ENUM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,27 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EstudioJuridico.BD.Datos
+namespace EstudioJuridico.Shared.DTO
 {
-    public class Caso : BaseEntity
-        {
-        
-
-        [Required(ErrorMessage = "El numero de expediente es obligatorio")]    
+    public class CasoDTO
+    {
+        [Required(ErrorMessage = "El numero de expediente es obligatorio")]
         public int NumeroExpediente { get; set; }
-
-        [DataType(DataType.Date)]
         public DateOnly FechaInicio { get; set; }
-       
         public EstadoCaso Estado { get; set; }
-        public string? Descripcion { get; set; }
-        
+       public string? Descripcion { get; set; }
         public TipoCaso Tipo { get; set; }
 
-        // navegacion 
-        public List<CasoPersona>? CasoPersonas { get; set; }
-        public List<Documentacion>? Documentacions { get; set; }
-        
 
     }
     public enum EstadoCaso

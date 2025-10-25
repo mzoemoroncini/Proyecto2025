@@ -1,4 +1,4 @@
-﻿using EstudioJuridico.BD.Datos.Entity;
+﻿using Proyecto2025.Shared.ENUM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,11 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EstudioJuridico.BD.Datos
+namespace EstudioJuridico.Shared.DTO
 {
-    public class Documentacion : BaseEntity
+    public class DocumentacionDTO
     {
-
         [Required(ErrorMessage = "La descripcion es obligatoria")]
         [MaxLength(10000, ErrorMessage = "1 caracter mínimo")]
         public required string Descripcion { get; set; }
@@ -20,13 +19,6 @@ namespace EstudioJuridico.BD.Datos
 
         [MaxLength(10000)]
         public string? ArchivoUrl { get; set; }
-
-
-
-        // claves foraneas
-        public int CasoId { get; set; }
-        public Caso? Casos { get; set; }
-        public int TipoDocumentacionId { get; set; }
-        public TipoDocumentacion? TiposDocumentos { get; set; }
     }
+    
 }

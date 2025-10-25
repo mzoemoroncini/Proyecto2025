@@ -7,17 +7,32 @@ using Proyecto2025.Server.Client.Pages;
 using Proyecto2025.Server.Components;
 
 
-
-//Constructor de la aplicacion
-#region configura el constructor de la aplicacion y sus servicios
 var builder = WebApplication.CreateBuilder(args);
+#region configura el constructor de la aplicacion y sus servicios
+
+//builder.Services.AddScoped(sp =>
+//    new HttpClient { BaseAddress = new Uri("https://localhost:7206") });
+//builder.Services.AddScoped<IHttpServicio, HttpServicio>();
+
+builder.Services.AddControllers();
+
+builder.Services.AddSwaggerGen();
 
 
-var conectionString = builder.Configuration.GetConnectionString("ConnSqlServer")
+
+//conexión bd
+var connectionString = builder.Configuration.GetConnectionString("ConnSqlServer")
 ?? throw new InvalidOperationException(
                     "El string de conexion no existe");
-builder.Services.AddDbContext<AppDBContext>(Options => 
-                                            Options.UseSqlServer(conectionString));
+builder.Services.AddDbContext<AppDBContext>(options =>
+                                            options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<ICasoRepositorio, CasoRepositorio>();
+builder.Services.AddScoped<IPersonaRepositorio, PersonaRepositorio>();
+builder.Services.AddScoped<ITipoDocumentacionRepositorio, TipoDocumentacionRepositorio>();
+builder.Services.AddScoped<IDocumentacionRepositorio, DocumentacionRepositorio>();
+
+builder.Services.AddScoped<ICasoPersonaRepositorio, CasoPersonaRepositorio>();
 
 
 
@@ -25,32 +40,25 @@ builder.Services.AddDbContext<AppDBContext>(Options =>
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
-
-builder.Services.AddEndpointsApiExplorer(); // necesario para Swagger
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new() { Title = "API Proyecto2025", Version = "v1" });
-});
-builder.Services.AddControllers();
+builder.Services.AddServerSideBlazor()
+      .AddCircuitOptions(options => { options.DetailedErrors = true; });
 
 
 #endregion
 
-//CONSTRUCCION DE LA APLICACION
 var app = builder.Build();
-app.MapControllers();
-
 #region Construcción de la aplicacion y el área de middlewears
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseWebAssemblyDebugging();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 else
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -66,30 +74,8 @@ app.MapRazorComponents<App>()
     .AddAdditionalAssemblies(typeof(Proyecto2025.Server.Client._Imports).Assembly);
 app.MapControllers();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Proyecto2025 v1");
-        // Si querés que Swagger esté en la raíz:
-        // c.RoutePrefix = string.Empty;
-    });
-}
+
+
 
 #endregion
 app.Run();
-
-
-
-builder.Services.AddScoped<ICasoRepositorio, CasoRepositorio>();
-builder.Services.AddScoped<IPersonaRepositorio, PersonaRepositorio>();
-builder.Services.AddScoped<ITipoDocumentacionRepositorio, TipoDocumentacionRepositorio>();
-builder.Services.AddScoped<IDocumentacionRepositorio, DocumentacionRepositorio>();
-
-builder.Services.AddScoped<ICasoPersonaRepositorio, CasoPersonaRepositorio>();
-
-builder.Services.AddScoped<ITestigosRepositorio, TestigoRepositorio>();
-builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();  
-
-
