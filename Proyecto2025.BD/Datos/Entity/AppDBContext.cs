@@ -45,9 +45,11 @@ namespace EstudioJuridico.BD.Datos.Entity
             // ---------------------------
             // Enums como string
             // ---------------------------
+
             modelBuilder.Entity<Caso>()
                 .Property(c => c.Estado)
                 .HasConversion<string>();
+
             modelBuilder.Entity<Caso>()
                 .Property(c => c.Tipo)
                 .HasConversion<string>();

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Proyecto2025.Shared\EstudioJuridico.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

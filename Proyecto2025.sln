@@ -4,14 +4,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.14.36203.30
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyecto2025.Server", "Proyecto2025.Server\Proyecto2025.Server\Proyecto2025.Server.csproj", "{A582BE20-507B-49FB-9BC2-1D9E237B17AC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2CC5A81C-5ECD-4E47-A3E0-81F32B6CFE49} = {2CC5A81C-5ECD-4E47-A3E0-81F32B6CFE49}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyecto2025.Server.Client", "Proyecto2025.Server\Proyecto2025.Server.Client\Proyecto2025.Server.Client.csproj", "{EA6479E4-C783-43D4-8D38-37DFB5527FE8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2CC5A81C-5ECD-4E47-A3E0-81F32B6CFE49} = {2CC5A81C-5ECD-4E47-A3E0-81F32B6CFE49}
+		{B9929E00-6532-42A3-A09C-FBAA20D7A092} = {B9929E00-6532-42A3-A09C-FBAA20D7A092}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstudioJuridico.Shared", "Proyecto2025.Shared\EstudioJuridico.Shared.csproj", "{2CC5A81C-5ECD-4E47-A3E0-81F32B6CFE49}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstudioJuridico.BD", "Proyecto2025.BD\EstudioJuridico.BD.csproj", "{57E276C1-7961-4BCF-8F9D-5D972708496B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstudioJuridico.Repositorio", "Proyecto2025.Repositorio\EstudioJuridico.Repositorio.csproj", "{ED6705FF-BC03-479D-AD75-FDCFACAF1F90}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2CC5A81C-5ECD-4E47-A3E0-81F32B6CFE49} = {2CC5A81C-5ECD-4E47-A3E0-81F32B6CFE49}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstudioJuridico.Servicio", "Proyecto2025.Servicio\EstudioJuridico.Servicio.csproj", "{B9929E00-6532-42A3-A09C-FBAA20D7A092}"
 EndProject

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Proyecto2025.BD\EstudioJuridico.BD.csproj" />
+    <ProjectReference Include="..\Proyecto2025.Shared\EstudioJuridico.Shared.csproj" />
   </ItemGroup>
 
 </Project>
