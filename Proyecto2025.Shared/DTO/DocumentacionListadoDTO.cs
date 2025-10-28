@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.Shared.DTO
 {
-    public class DocumentacionListadoDTO
+    public class DocumentacionListadoDTO : BaseEntityDTO
     {
 
-        public int Id { get; set; }
+       
         public string ArchivoUrl { get; set; }
         
         public string DatosDocumento { get; set; } =  "";

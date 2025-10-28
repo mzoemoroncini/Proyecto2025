@@ -24,7 +24,7 @@ namespace EstudioJuridico.Repositorio.Repositorios
                                     .Select(p => new CasoListadoDTO
                                     {
                                         NumeroExpediente = p.NumeroExpediente,
-                                        DatosCaso = $"{p.Estado} - {p.Tipo}"
+                                        DatosCaso = $"{p.Estado} - {p.Tipo} - {p.NumeroExpediente}"
                                     })
                                     .ToListAsync();
             return lista;

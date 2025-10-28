@@ -1,55 +1,55 @@
-using EstudioJuridico.BD.Datos.Entity;
+ï»¿using EstudioJuridico.BD.Datos.Entity;
 using EstudioJuridico.Repositorio.Repositorios;
+using EstudioJuridico.Servicio.ServiciosHttp;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Proyecto2025.Server.Client.Pages;
 using Proyecto2025.Server.Components;
-
+using Proyecto2025.Servicio.ServiciosHttp;
 
 var builder = WebApplication.CreateBuilder(args);
-#region configura el constructor de la aplicacion y sus servicios
 
-//builder.Services.AddScoped(sp =>
-//    new HttpClient { BaseAddress = new Uri("https://localhost:7206") });
-//builder.Services.AddScoped<IHttpServicio, HttpServicio>();
+// HttpClient global (para Blazor Server)
+builder.Services.AddScoped(sp =>
+    new HttpClient { BaseAddress = new Uri("https://localhost:7084") });
 
-builder.Services.AddControllers();
+// Servicio HTTP personalizado
+builder.Services.AddScoped<IHttpServicio, HttpServicio>();
 
+// Swagger
 builder.Services.AddSwaggerGen();
 
-
-
-//conexión bd
+// Base de datos
 var connectionString = builder.Configuration.GetConnectionString("ConnSqlServer")
-?? throw new InvalidOperationException(
-                    "El string de conexion no existe");
+    ?? throw new InvalidOperationException("El string de conexiÃ³n no existe");
 builder.Services.AddDbContext<AppDBContext>(options =>
-                                            options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString));
 
+// Repositorios
 builder.Services.AddScoped<ICasoRepositorio, CasoRepositorio>();
 builder.Services.AddScoped<IPersonaRepositorio, PersonaRepositorio>();
 builder.Services.AddScoped<ITipoDocumentacionRepositorio, TipoDocumentacionRepositorio>();
 builder.Services.AddScoped<IDocumentacionRepositorio, DocumentacionRepositorio>();
-
 builder.Services.AddScoped<ICasoPersonaRepositorio, CasoPersonaRepositorio>();
 
-
-
-// Add services to the container.
+// Blazor y Razor Components
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
 builder.Services.AddServerSideBlazor()
-      .AddCircuitOptions(options => { options.DetailedErrors = true; });
+    .AddCircuitOptions(options => { options.DetailedErrors = true; });
 
-
-#endregion
+// --- IMPORTANTE: Desactivamos antiforgery para la API ---
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add(new Microsoft.AspNetCore.Mvc.IgnoreAntiforgeryTokenAttribute());
+});
 
 var app = builder.Build();
-#region Construcción de la aplicacion y el área de middlewears
 
-// Configure the HTTP request pipeline.
+// Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseWebAssemblyDebugging();
@@ -64,18 +64,18 @@ else
 
 app.UseHttpsRedirection();
 
-
-app.UseAntiforgery();
-
 app.MapStaticAssets();
+
+// Primero mapeamos los controladores (API)
+app.MapControllers();
+
+// Luego Blazor Server / WASM
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(Proyecto2025.Server.Client._Imports).Assembly);
-app.MapControllers();
 
+// ðŸ’¡ Antiforgery va acÃ¡, para proteger solo los formularios de Blazor Server
+app.UseAntiforgery();
 
-
-
-#endregion
 app.Run();

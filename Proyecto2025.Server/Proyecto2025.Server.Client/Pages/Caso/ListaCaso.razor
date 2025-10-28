@@ -1,5 +1,6 @@
 ﻿@page "/casos"
-
+@inject IHttpServicio http
+@inject NavigationManager navHttp
 
 <h3>Lista de Casos</h3>
 
@@ -7,11 +8,10 @@
     <tr>
         <th>Casos</th>
     </tr>
+
     @if (casos == null)
     {
-        <p>
-            <p>Buscando...</p>
-        </p>
+        <p>Buscando...</p>
     }
     else if (casos.Count == 0)
     {
@@ -23,14 +23,44 @@
         {
             <tr>
                 <td>@caso.DatosCaso</td>
+                <td>
+                    <a class="btn btn-primary"
+                       href="/casos/editar/{caso.Id}">
+                        Editar
+                    </a>
+                </td>
+                <td>
+                    <button class="btn btn-danger"
+                            @onclick="() => Eliminar(caso)">
+                        Eliminar
+                    </button>
+                </td>
             </tr>
         }
     }
+    <br />
 
+   
 </table>
+
+ <p>@Mensaje</p>
+<br />
+<Confirmacion @ref="confirmacion" 
+              Titulo="Cuidado"
+              textOk="Aceptar"
+              textCancelar="No borrar"
+              onConfirm = "Borrar"
+              onCancel="Cancelar">
+    <p>Está por Borrar un caso.</p>
+    <br />
+    <p>¿Está seguro?</p>
+</Confirmacion> 
 
 @code {
     List<CasoListadoDTO> casos;
+    string Mensaje = "";
+    Confirmacion confirmacion;
+    CasoListadoDTO casoSeleccionado = null;
 
     protected override async Task OnInitializedAsync()
     {
@@ -41,10 +71,42 @@
 
     private async Task LeerCasos()
     {
-        
-       // casos = await Http.GetFromJsonAsync<List<CasoListadoDTO>>("api/Caso/listacaso");
 
+        // casos = await Http.GetFromJsonAsync<List<CasoListadoDTO>>("api/Caso/listacaso");
+        string Mensaje = "";
+        var resp = await http.Get<List<CasoListadoDTO>>("api/caso/listacaso");
+        if (!resp.Error)
+        {
+            casos = resp.Respuesta;
+        }
+        else
+        {
+            Mensaje = resp.ObtenerError();
+        }
+    }
+    private async Task Borrar()
+    {
+        var resp = await http.Delete($"api/caso/{casoSeleccionado.Id}");
+        if (resp.Error)
+        {
+            Mensaje = resp.ObtenerError();
+        }
+        casoSeleccionado = null;
+        confirmacion.Ocultar();
+        await LeerCasos();
+    }
 
+    private async Task Eliminar(CasoListadoDTO caso)
+    {
+        casoSeleccionado = caso;
+        confirmacion.Ver();
+    }
+
+    private void Cancelar()
+    {
+        confirmacion.Ocultar();
+        casoSeleccionado = null;
+    }
 }
 
-}
+

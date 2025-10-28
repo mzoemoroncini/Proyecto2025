@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.Shared.DTO
 {
-    public class TipoDocumentacionDTO
+    public class TipoDocumentacionDTO : BaseEntityDTO
     {
         [Required(ErrorMessage = "El Nombre es obligatorio")]
         public string Nombre { get; set; }

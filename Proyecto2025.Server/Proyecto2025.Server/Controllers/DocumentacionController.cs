@@ -18,7 +18,7 @@ namespace Proyecto2025.Server.Controllers
             }
 
             [HttpGet]
-            public async Task<ActionResult<List<Documentacion>>> GetFull()
+            public async Task<ActionResult<List<DocumentacionDTO>>> GetFull()
             {
                 var lista = await repositorio.Select();
                 if (lista == null)
@@ -33,8 +33,8 @@ namespace Proyecto2025.Server.Controllers
                 return Ok(lista);
             }
 
-        [HttpGet("listacumentacion")] 
-        public async Task<ActionResult<List<DocumentacionListadoDTO>>> ListaPais()
+        [HttpGet("listadocumentacion")] 
+        public async Task<ActionResult<List<DocumentacionListadoDTO>>> ListaDocumentacion()
         {
             var lista = await repositorio.SelectListaDocumentacion();
             if (lista == null)
@@ -62,15 +62,16 @@ namespace Proyecto2025.Server.Controllers
             }
 
 
-            [HttpPost]
-            public async Task<ActionResult<int>> Post(Documentacion DTO)
+            [HttpPost("cargadocumentacion")]
+            public async Task<ActionResult<int>> Post(DocumentacionDTO DTO)
             {
                 try
                 {
                     Documentacion entidad = new Documentacion
                     {
                         Id = DTO.Id,
-                        
+                        CasoId = DTO.CasoId,
+                        TipoDocumentacionId = DTO.TipoDocumentacionId,
                         Descripcion = DTO.Descripcion,
                         FechaCreacion = DTO.FechaCreacion,
                         ArchivoUrl = DTO.ArchivoUrl

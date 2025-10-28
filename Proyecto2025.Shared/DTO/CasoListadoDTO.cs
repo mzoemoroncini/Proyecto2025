@@ -6,11 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace EstudioJuridico.Shared.DTO
 {
-    public class CasoListadoDTO
+    public class CasoListadoDTO : BaseEntityDTO
     {
-       
+       public int CasoId { get; set; }
         public int NumeroExpediente { get; set; }
         
         public string DatosCaso { get; set; } =  "";

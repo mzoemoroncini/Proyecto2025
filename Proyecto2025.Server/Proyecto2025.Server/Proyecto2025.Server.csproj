@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\Proyecto2025.Server.Client\Pages\Caso\Confirmacion.razor" Link="Confirmacion.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Proyecto2025.BD\EstudioJuridico.BD.csproj" />
     <ProjectReference Include="..\..\Proyecto2025.Repositorio\EstudioJuridico.Repositorio.csproj" />
     <ProjectReference Include="..\..\Proyecto2025.Shared\EstudioJuridico.Shared.csproj" />

@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.Shared.DTO
 {
-    public class DocumentacionDTO
+    public class DocumentacionDTO : BaseEntityDTO
     {
-        [Required(ErrorMessage = "La descripcion es obligatoria")]
+        public int CasoId { get; set; }
+        public int TipoDocumentacionId { get; set; }
+
         [MaxLength(10000, ErrorMessage = "1 caracter mínimo")]
-        public required string Descripcion { get; set; }
+        public string Descripcion { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime FechaCreacion { get; set; }

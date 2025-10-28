@@ -68,14 +68,14 @@ namespace Proyecto2025.Server.Controllers
         {
             try
             {
-                TipoDocumentacion entidad = new TipoDocumentacion
+                TipoDocumentacion entidadtd = new TipoDocumentacion
                 {
                     Id = DTO.Id,
                     Nombre = DTO.Nombre,
 
                 };
-                var id = await repositorio.Insert(entidad);
-                return Ok(entidad.Id);
+                var id = await repositorio.Insert(entidadtd);
+                return Ok(entidadtd.Id);
             }
             catch (Exception e)
             {

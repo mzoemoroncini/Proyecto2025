@@ -1,0 +1,160 @@
+﻿@page "/Documentacion/cargadocumentacion"
+@inject IHttpServicio http
+@inject NavigationManager navHttp
+
+
+<h3>Cargar Documentacion </h3>
+
+<EditForm Model="docs" OnValidSubmit="Grabar" >
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label>Id</label>
+        <div>
+            <InputNumber class="form-control" @bind-Value="@docs.Id" />
+            <ValidationMessage For="@(() => docs.Id)" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label>Id Caso</label>
+        <div>
+            <InputNumber class="form-control" @bind-Value="@docs.CasoId" />
+            <ValidationMessage For="@(() => docs.CasoId)" />
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <label>Id tipo documento</label>
+        <div>
+            <InputNumber class="form-control" @bind-Value="@docs.TipoDocumentacionId" />
+            <ValidationMessage For="@(() => docs.TipoDocumentacionId)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Descripcion</label>
+        <div>
+            <InputText class="form-control" @bind-Value="@docs.Descripcion" />
+            <ValidationMessage For="@(() => docs.Descripcion)" />
+        </div>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label>FechaCreacion</label>
+        <div>
+            <InputDate class="form-control" @bind-Value="@docs.FechaCreacion" />
+            <ValidationMessage For="@(() => docs.FechaCreacion)" />
+        </div>
+    </div>
+
+    <br />
+    
+    <div class="form-group">
+        <label>ArchivoUrl </label>
+        <div>
+            <InputText class="form-control" @bind-Value="@docs.ArchivoUrl" />
+            <ValidationMessage For="@(() => docs.ArchivoUrl)" />
+        </div>
+    </div>
+    
+    <br />
+    
+    <button class="btn btn-primary" type="submit">Aceptar</button>
+    <button class="btn btn-primary" @onclick="Cancelar">Cancelar</button>
+</EditForm>
+<br />
+
+
+<div class="mb-3">
+    <label for="Caso"> CasoId: </label>
+    <select id="Caso" class="form-select" @bind="docs.CasoId">
+        <option value="0">-- Seleccione un Caso --</option>
+        @foreach (var c in entidad)
+        {
+            <option value="@c.Id">@c.Id - @c.NumeroExpediente</option>
+        }
+    </select>
+</div>
+
+
+<div class="mb-3">
+    <label for="TipoDocumentacion"> TipoDocumentacionId: </label>
+    <select id="TipoDocumentacion" class="form-select" @bind="docs.TipoDocumentacionId">
+        <option value="0">-- Seleccione un Tipo de Documentación --</option>
+        @foreach (var t in entidadtd)
+        {
+            <option value="@t.Id">@t.Nombre</option>
+        }
+    </select>
+</div>
+
+
+<p>@Mensaje</p>
+
+
+
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await LeerCasos();
+        await LeerTipos();
+        await LeerDocumentacion();
+    }
+
+    private List<DocumentacionListadoDTO> casos = new List<DocumentacionListadoDTO>();
+    private List<CasoListadoDTO> entidad = new List<CasoListadoDTO>();
+    private List<TipoDocumentacionListadoDTO> entidadtd = new List<TipoDocumentacionListadoDTO>();
+    private DocumentacionDTO docs = new DocumentacionDTO();
+    string Mensaje = "";
+    
+    private async Task LeerCasos()
+    {
+        var resp = await http.Get<List<CasoListadoDTO>>("api/caso");
+        if (!resp.Error)
+            entidad = resp.Respuesta;
+    }
+
+    private async Task LeerTipos()
+    {
+        var resp = await http.Get<List<TipoDocumentacionListadoDTO>>("api/TipoDocumentacion");
+        if (!resp.Error)
+            entidadtd = resp.Respuesta;
+    }
+
+    private async Task Grabar()
+    {
+        var httpResp = await http.Post<DocumentacionDTO, int>("api//Documentacion/cargadocumentacion", docs);
+        if (!httpResp.Error)
+        {
+            navHttp.NavigateTo("/Documentacion");
+        }
+        else
+        {
+            Mensaje = httpResp.ObtenerError();
+        }
+    }
+    private async Task LeerDocumentacion()
+    {
+
+        string Mensaje = "";
+        var resp = await http.Get<List<DocumentacionListadoDTO>>("api/Documentacion/listadocumentacion");
+        if (!resp.Error)
+        {
+            casos = resp.Respuesta;
+        }
+        else
+        {
+            Mensaje = resp.ObtenerError();
+        }
+    }
+    private void Cancelar()
+    {
+        navHttp.NavigateTo("/Documentacion");
+    }
+}

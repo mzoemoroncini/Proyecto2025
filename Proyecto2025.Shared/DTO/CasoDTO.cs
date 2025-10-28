@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EstudioJuridico.Shared.DTO
 {
-    public class CasoDTO
+    public class CasoDTO : BaseEntityDTO
     {
         [Required(ErrorMessage = "El numero de expediente es obligatorio")]
         public int NumeroExpediente { get; set; }
@@ -16,7 +16,7 @@ namespace EstudioJuridico.Shared.DTO
         public EstadoCaso Estado { get; set; }
        public string? Descripcion { get; set; }
         public TipoCaso Tipo { get; set; }
-
+        public int ClienteId { get; set; }
 
     }
     public enum EstadoCaso
